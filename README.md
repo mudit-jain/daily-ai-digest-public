@@ -34,7 +34,7 @@ A new digest is committed **daily around 7:30 AM IST**.
 ## 🔗 Live Access via GitHub Pages
 You can view the digest online via GitHub Pages:
 ```
-https://mudit-jain.github.io/daily-ai-digest/
+https://mudit-jain.github.io/daily-ai-digest-public/
 ```
 
 ---
