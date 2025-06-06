@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weekly AI & Math Digest - June 7, 2025</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; padding: 2rem; background: #ffffff; line-height: 1.6; color: #333; }
+    h1 { color: #2c3e50; }
+    h2 { color: #34495e; border-bottom: 2px solid #ecf0f1; padding-bottom: 0.2rem; }
+    h3 { color: #2c3e50; margin-top: 1.5rem; }
+    pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
+    code { font-family: monospace; }
+    a { color: #1a0dab; }
+  </style>
+</head>
+<body>
+
+<h1>Weekly AI, ML & Mathematics Digest</h1>
+<p><strong>Date:</strong> June 7, 2025</p>
+
+<hr>
+
+<h2>1. Efficient Finetuning of Quantized LLMs</h2>
+<p><strong>Link:</strong> <a href="https://arxiv.org/abs/2405.12398" target="_blank">arxiv.org/abs/2405.12398</a></p>
+<h3>Summary:</h3>
+<p>The paper proposes QLoRA++ — a way to fine-tune quantized LLMs (e.g., 4-bit) efficiently by combining parameter-efficient finetuning with quantized inference. This leads to dramatic memory savings while retaining high performance.</p>
+
+<h3>Math/Technical Explanation:</h3>
+<ul>
+  <li>Based on LoRA: decomposing weight updates as $W = W_0 + \Delta A \Delta B$.</li>
+  <li>Low-rank matrix updates are injected via adapters during forward/backward passes.</li>
+  <li>Quantization-aware training applied to transformer layers. Bit-level rounding introduces quantization noise, modeled as Gaussian with bounded support.</li>
+</ul>
+
+<h3>Code Snippet (PEFT with QLoRA++):</h3>
+<pre><code>from peft import get_peft_model, LoraConfig
+config = LoraConfig(r=16, lora_alpha=32, target_modules=["q_proj", "v_proj"])
+model = get_peft_model(base_model, config)
+model.train()</code></pre>
+
+<h3>Business Application:</h3>
+<p>Enables cheap deployment of large models in memory-constrained settings (edge devices, startups). Companies like Hugging Face, Mistral, and open LLM hosting providers could incorporate this in inference APIs.</p>
+
+<hr>
+
+<h2>2. ReFT: Reinforcement Finetuning of LLMs Without Human Feedback</h2>
+<p><strong>Link:</strong> <a href="https://arxiv.org/abs/2405.10050" target="_blank">arxiv.org/abs/2405.10050</a></p>
+
+<h3>Summary:</h3>
+<p>ReFT proposes using synthetic preference signals — derived from the model’s own internal activations — as a proxy for reinforcement learning with human feedback (RLHF).</p>
+
+<h3>Why It Works:</h3>
+<ul>
+  <li>Uses a scoring function based on internal token log-probabilities and divergence from base model.</li>
+  <li>Optimizes response generation by maximizing "latent preference scores".</li>
+  <li>Improves over PPO-style RLHF without needing any human annotator reward.</li>
+</ul>
+
+<h3>Math Insight:</h3>
+<p>Formulated as maximizing expected reward over a distribution defined by KL-penalized logits:
+$$
+\max_\theta \mathbb{E}_{x \sim \mathcal{D}} [\text{score}(f_\theta(x)) - \beta \cdot \text{KL}(f_\theta(x) || f_{\text{base}}(x))]
+$$</p>
+
+<h3>Industry Use:</h3>
+<p>Relevant for open source alignment protocols, especially for non-English or task-specific fine-tuning.</p>
+
+<hr>
+
+<h2>3. Batch Norm in Transformers Doesn’t Work. Here’s Why.</h2>
+<p><strong>Link:</strong> <a href="https://arxiv.org/abs/2405.06530" target="_blank">arxiv.org/abs/2405.06530</a></p>
+
+<h3>Summary:</h3>
+<p>The authors show empirically and theoretically why BatchNorm fails in transformers and propose alternatives.</p>
+
+<h3>Core Insight:</h3>
+<ul>
+  <li>Transformers use variable-length sequences and self-attention, violating BatchNorm's core assumption of i.i.d. activations.</li>
+  <li>LayerNorm, RMSNorm and ScaleNorm are better suited.</li>
+</ul>
+
+<h3>Mathematical Reason:</h3>
+<p>Batch statistics are skewed by attention weights leading to unstable gradients and learning curves.</p>
+
+<h3>Use-Case:</h3>
+<p>Model implementers and framework builders should avoid introducing BatchNorm in custom transformer variants.</p>
+
+<hr>
+
+<h2>4. Diffusion Models for Combinatorial Optimization</h2>
+<p><strong>Link:</strong> <a href="https://arxiv.org/abs/2405.11342" target="_blank">arxiv.org/abs/2405.11342</a></p>
+
+<h3>Summary:</h3>
+<p>This paper presents how diffusion models can be repurposed to solve discrete optimization tasks like TSP, SAT, etc.</p>
+
+<h3>How:</h3>
+<ul>
+  <li>Encode the problem state into a high-dimensional continuous space.</li>
+  <li>Use diffusion (noise addition) to sample diverse solution candidates.</li>
+  <li>Apply denoising steps as constrained search.</li>
+</ul>
+
+<h3>Math Framework:</h3>
+<p>Defines a joint score function over candidate solution states and their energy landscape. Uses gradient flow in probability space.</p>
+
+<h3>Business Impact:</h3>
+<p>Helps solve large-scale logistics, protein folding, routing, and scheduling tasks. A potential tool in industrial automation.</p>
+
+<hr>
+
+<h2>5. DeepMind’s AutoRT: Autonomous RL Agents for Robotic Training</h2>
+<p><strong>Link:</strong> <a href="https://www.deepmind.com/blog/autort-autonomous-reinforcement-learning-agents-at-scale" target="_blank">Blog Article</a></p>
+
+<h3>Summary:</h3>
+<p>AutoRT is DeepMind’s system to automate the deployment of reinforcement learning agents to real-world robot hardware clusters.</p>
+
+<h3>Architecture:</h3>
+<ul>
+  <li>Auto-scheduling, auto-tuning, and auto-scaling of agent trials.</li>
+  <li>Integrates vision pipelines, RL agents, and robotic APIs.</li>
+  <li>Monitors hardware safety in real time.</li>
+</ul>
+
+<h3>Significance:</h3>
+<p>Represents a shift from simulator-only RL to real-world learning at scale. Shows how foundation models can control actuation-based systems.</p>
+
+<hr>
+
+<p>End of Weekly Digest for June 7, 2025</p>
+
+</body>
+</html>
