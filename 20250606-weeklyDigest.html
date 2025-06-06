@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weekly AI/ML Digest – June 6, 2025</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 2rem; max-width: 1000px; margin: auto; }
+    h1, h2, h3 { color: #2c3e50; }
+    pre { background-color: #f4f4f4; padding: 1rem; overflow-x: auto; border-left: 4px solid #3498db; }
+    code { font-family: Consolas, monospace; }
+    a { color: #2980b9; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    blockquote { background: #f9f9f9; border-left: 5px solid #ccc; margin: 1em 0; padding: 0.5em 1em; }
+    hr { border: 0; height: 1px; background: #ccc; margin: 2em 0; }
+  </style>
+</head>
+<body>
+
+<h1>🧠 Weekly AI/ML Digest – June 6, 2025</h1>
+<p><strong>Focus:</strong> Large Language Models (LLMs), Reinforcement Learning (RL), Mathematical Reasoning</p>
+
+<hr />
+
+<h2>1. Reinforcement Learning for Reasoning in Large Language Models with One Training Example</h2>
+<p><strong>Authors:</strong> Yiping Wang et al.<br />
+<strong>Published:</strong> April 29, 2025<br />
+<strong>Link:</strong> <a href="https://arxiv.org/abs/2504.20571">arXiv:2504.20571</a></p>
+
+<h3>Overview</h3>
+<p>This study introduces <strong>1-shot RLVR</strong>, a novel method enabling LLMs to improve reasoning using just one example. It delivers significant performance gains across reasoning benchmarks.</p>
+
+<h3>Mathematical Foundations</h3>
+<blockquote>
+<p>
+Maximize expected return via policy gradient:
+</p>
+<p>
+<code>
+max<sub>π</sub> E<sub>π</sub> [ Σ<sub>t=0</sub><sup>T</sup> γ<sup>t</sup> · r<sub>t</sub> ]
+</code>
+</p>
+<p>
+π: policy, γ: discount factor, r<sub>t</sub>: reward at time t, T: time horizon.
+</p>
+</blockquote>
+
+<h3>Practical Implementation</h3>
+<pre><code># Pseudocode for entropy-regularized policy gradient
+for each episode:
+    generate trajectory using current policy
+    compute rewards for the trajectory
+    update policy parameters to maximize expected return
+    apply entropy regularization to encourage exploration
+</code></pre>
+
+<h3>Applications</h3>
+<ul>
+  <li>AI tutors with minimal training data</li>
+  <li>Efficient deployment in resource-constrained settings</li>
+  <li>Faster prototyping of specialized AI tools</li>
+</ul>
+
+<hr />
+
+<h2>2. Training Large Language Models to Reason via EM Policy Gradient</h2>
+<p><strong>Author:</strong> Tianbing Xu<br />
+<strong>Published:</strong> April 24, 2025<br />
+<strong>Link:</strong> <a href="https://arxiv.org/abs/2504.18587">arXiv:2504.18587</a></p>
+
+<h3>Overview</h3>
+<p>Presents <strong>EM Policy Gradient</strong>, an off-policy RL algorithm to train LLMs for better reasoning without needing complex heuristics like PPO.</p>
+
+<h3>Mathematical Foundations</h3>
+<p>The process alternates:</p>
+<ul>
+  <li><strong>E-step:</strong> Sample reasoning trajectories</li>
+  <li><strong>M-step:</strong> Fine-tune using reward signals</li>
+</ul>
+
+<h3>Practical Implementation</h3>
+<pre><code># Pseudocode for EM Policy Gradient
+initialize policy parameters
+while not converged:
+    trajectories = sample_trajectories(policy)
+    policy = update_policy(trajectories, rewards)
+</code></pre>
+
+<h3>Applications</h3>
+<ul>
+  <li>Scientific discovery with multi-step reasoning</li>
+  <li>AI decision-making agents</li>
+  <li>Smarter virtual assistants</li>
+</ul>
+
+<hr />
+
+<h2>3. Surrogate Signals from Format and Length: RL for Math without Ground Truth</h2>
+<p><strong>Authors:</strong> Rihui Xin et al.<br />
+<strong>Published:</strong> May 26, 2025<br />
+<strong>Link:</strong> <a href="https://arxiv.org/abs/2505.19439">arXiv:2505.19439</a></p>
+
+<h3>Overview</h3>
+<p>Uses surrogate signals (format + length) as rewards for training LLMs to solve math problems, removing the need for exact answer labels.</p>
+
+<h3>Mathematical Foundations</h3>
+<blockquote>
+<p>
+r = α · FormatScore + β · LengthScore
+</p>
+</blockquote>
+<p>Weights (α, β) combine correctness of format and verbosity of response.</p>
+
+<h3>Practical Implementation</h3>
+<pre><code># Pseudocode for training with surrogate rewards
+for each problem:
+    generate solution using current policy
+    evaluate format and length scores
+    compute surrogate reward
+    update policy parameters based on surrogate reward
+</code></pre>
+
+<h3>Applications</h3>
+<ul>
+  <li>Automated grading systems</li>
+  <li>AI in data-scarce domains</li>
+  <li>Cost-effective model training</li>
+</ul>
+
+<hr />
+
+<h2>4. Accurate and Diverse LLM Reasoning via PRM-Guided GFlowNets</h2>
+<p><strong>Authors:</strong> Adam Younsi et al.<br />
+<strong>Published:</strong> April 28, 2025<br />
+<strong>Link:</strong> <a href="https://arxiv.org/abs/2504.19981">arXiv:2504.19981</a></p>
+
+<h3>Overview</h3>
+<p>Combines <strong>Process Reward Models (PRM)</strong> with <strong>GFlowNets</strong> to guide LLMs toward diverse, accurate reasoning paths.</p>
+
+<h3>Mathematical Foundations</h3>
+<blockquote>
+<p>
+P(x) ∝ R(x)
+</p>
+<p>Where x is a reasoning path and R(x) is its reward.</p>
+</blockquote>
+
+<h3>Practical Implementation</h3>
+<pre><code># Pseudocode for PRM-guided GFlowNet training
+initialize PRM and GFlowNet parameters
+for each training iteration:
+    sample reasoning paths using GFlowNet
+    evaluate rewards using PRM
+    update GFlowNet to align sampling with rewards
+</code></pre>
+
+<h3>Applications</h3>
+<ul>
+  <li>AI tutors offering diverse solutions</li>
+  <li>Creative multi-step problem solving</li>
+  <li>Handling ambiguous problems</li>
+</ul>
+
+<hr />
+
+<h2>5. Integrating LLMs, RL, and ML within Multi-Agent Systems</h2>
+<p><strong>Published in:</strong> Architectural Engineering and Design Management<br />
+<strong>Link:</strong> <a href="https://www.tandfonline.com/doi/full/10.1080/00038628.2025.2488522">Taylor & Francis Online</a></p>
+
+<h3>Overview</h3>
+<p>Discusses integrating LLMs, RL, and ML into multi-agent systems to improve collaboration, decision-making, and problem-solving.</p>
+
+<h3>Mathematical Foundations</h3>
+<p>Uses global reward optimization across coordinated agents trained via RL.</p>
+
+<h3>Practical Implementation</h3>
+<pre><code># Pseudocode for multi-agent system coordination
+initialize agents with respective models
+for each task:
+    agents communicate and share information
+    each agent selects actions based on local observations and shared data
+    evaluate global reward based on collective performance
+    update agent policies using reinforcement learning
+</code></pre>
+
+<h3>Applications</h3>
+<ul>
+  <li>Smart infrastructure</li>
+  <li>Disaster management</li>
+  <li>Collaborative robotics</li>
+</ul>
+
+<hr />
+
+</body>
+</html>
