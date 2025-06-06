@@ -1,12 +1,12 @@
-# 📬 Daily AI, ML & Math Digest
+# 📬 Weekly AI, ML & Math Digest
 
-Welcome to the **Daily Digest** — your morning dose of cutting-edge research in data science, machine learning, LLMs, agentic workflows, and applied mathematics. This repository publishes a new, richly annotated digest every day, designed to help you stay ahead of the curve without drowning in PDFs.
+Welcome to the **Weekly Digest** — your morning dose of cutting-edge research in data science, machine learning, LLMs, agentic workflows, and applied mathematics. This repository publishes a new, richly annotated digest every day, designed to help you stay ahead of the curve without drowning in PDFs.
 
 ---
 
 ## 📌 What You'll Find
 
-Each daily HTML file contains:
+Each Weekly HTML file contains:
 
 - 🔬 **Latest Papers & Articles**: From arXiv, OpenReview, and other trusted sources.
 - 💡 **Why It Works**: Key mathematical concepts behind the methods.
@@ -27,14 +27,14 @@ Each daily HTML file contains:
 ---
 
 ## 📅 Schedule
-A new digest is committed **daily around 7:30 AM IST**.
+A new digest is committed **every Friday around 7:30 AM IST**.
 
 ---
 
 ## 🔗 Live Access via GitHub Pages
 You can view the digest online via GitHub Pages:
 ```
-https://mudit-jain.github.io/daily-ai-digest-public/
+https://mudit-jain.github.io/weekly-ai-digest-public/
 ```
 
 ---
